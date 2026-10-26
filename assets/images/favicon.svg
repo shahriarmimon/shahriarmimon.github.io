@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+    <linearGradient id="dnaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#2563eb" />
+    </linearGradient>
+  </defs>
+  <!-- Background circle with subtle glow -->
+  <rect width="64" height="64" rx="16" fill="#0f172a" />
+  <!-- Stylized plant shoot / DNA leaf hybrid -->
+  <path d="M32 10 C 44 14, 52 26, 48 40 C 45 50, 36 54, 32 54 C 28 54, 19 50, 16 40 C 12 26, 20 14, 32 10 Z" fill="url(#leafGrad)" opacity="0.9" />
+  <path d="M32 14 Q 38 28 32 42 Q 26 30 32 14 Z" fill="#ffffff" opacity="0.25" />
+  <!-- DNA Helix Curves -->
+  <path d="M22 28 Q 32 34 42 28 M22 38 Q 32 32 42 38" stroke="url(#dnaGrad)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <!-- Central core seed / node -->
+  <circle cx="32" cy="33" r="3" fill="#ffffff" />
+</svg>
