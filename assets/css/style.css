@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Shahriar Mannan Imon Talukder — Personal Academic Portfolio
+   Shahriar Mannan Imon Talukder | Personal Academic Portfolio
    Clean, Simple, White-Background Stylesheet
    ========================================================================== */
 
@@ -188,32 +188,61 @@ p:last-child {
 .profile-header {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 2.25rem;
   margin-bottom: 2.5rem;
-  padding-bottom: 2rem;
+  padding-bottom: 2.25rem;
   border-bottom: 1px solid var(--border);
 }
 
 .profile-photo {
-  width: 135px;
-  height: 135px;
-  border-radius: 10px;
+  width: 155px;
+  height: 155px;
+  border-radius: 12px;
   object-fit: cover;
   border: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   flex-shrink: 0;
 }
 
 .profile-info h1 {
-  font-size: 1.75rem;
-  margin-bottom: 0.75rem;
+  font-size: 1.85rem;
+  margin-bottom: 0.3rem;
+}
+
+.profile-tagline {
+  font-size: 0.96rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
 }
 
 .profile-links {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.65rem 1.15rem;
-  font-size: 0.9rem;
+  gap: 0.55rem;
+  font-size: 0.86rem;
+}
+
+.pill-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 500;
+  color: var(--text-main);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.pill-link:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+  color: var(--text-main);
+  text-decoration: none;
+  transform: translateY(-1px);
 }
 
 .icon-link {
@@ -231,10 +260,68 @@ p:last-child {
 }
 
 .link-icon {
-  width: 17px;
-  height: 17px;
+  width: 16px;
+  height: 16px;
   object-fit: contain;
   flex-shrink: 0;
+}
+
+/* Vision Callout & Research Interest Cards */
+.vision-box {
+  margin-top: 1.25rem;
+  padding: 1.15rem 1.35rem;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--text-main);
+  border-radius: 6px;
+}
+
+.vision-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-main);
+  margin-bottom: 0.3rem;
+}
+
+.vision-box p {
+  font-size: 0.95rem;
+  color: var(--text-body);
+  margin: 0;
+}
+
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.interest-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.15rem 1.25rem;
+  background: var(--bg);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.interest-card:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.interest-card h3 {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 0.3rem;
+}
+
+.interest-card p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin: 0;
 }
 
 .link-sep {
@@ -598,8 +685,12 @@ p:last-child {
   }
 
   .profile-photo {
-    width: 115px;
-    height: 115px;
+    width: 125px;
+    height: 125px;
+  }
+
+  .interests-grid {
+    grid-template-columns: 1fr;
   }
 
   .nav-wrap {
