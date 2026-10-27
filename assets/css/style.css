@@ -351,9 +351,9 @@ p:last-child {
   opacity: 0.28;
 }
 
-.home-page .site-header,
-.home-page main,
-.home-page .site-footer {
+.site-header,
+main,
+.site-footer {
   position: relative;
   z-index: 1;
 }
