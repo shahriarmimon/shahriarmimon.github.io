@@ -434,31 +434,72 @@ p:last-child {
 }
 
 /* Publications */
-.pub-list {
-  list-style: decimal;
-  padding-left: 1.35rem;
+.pub-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
-.pub-item {
-  margin-bottom: 1.5rem;
-  padding-left: 0.35rem;
+.pub-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.35rem 1.5rem;
+  background: var(--bg);
+  transition: border-color 0.15s ease;
 }
 
-.pub-item:last-child {
-  margin-bottom: 0;
+.pub-card:hover {
+  border-color: #d1d5db;
 }
 
-.pub-authors {
-  color: var(--text-body);
+.pub-venue {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  margin-bottom: 0.35rem;
 }
 
-.pub-title {
-  font-style: italic;
+.pub-card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
   color: var(--text-main);
+  line-height: 1.45;
+  margin-bottom: 0.5rem;
 }
 
-.pub-journal {
-  color: var(--text-body);
+.pub-card-authors {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.pub-card-authors strong {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.pub-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-main);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  padding: 0.35rem 0.8rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.pub-link-btn:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+  color: var(--text-main);
+  text-decoration: none;
 }
 
 /* Contact Page */
