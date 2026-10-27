@@ -11,7 +11,104 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body class="home-page">
+
+  <!-- Subtle Background Graphics: DNA, Plants, and Microbes -->
+  <div class="science-bg" aria-hidden="true">
+    <!-- Left Margin: DNA Double Helix, Condensate Droplets & Phytochemical Ring -->
+    <svg class="bg-left-dna" viewBox="0 0 220 760" xmlns="http://www.w3.org/2000/svg">
+      <!-- DNA Strand A & B -->
+      <path d="M50 20 C 130 80, 130 140, 50 200 C -30 260, -30 320, 50 380 C 130 440, 130 500, 50 560 C -30 620, -30 680, 50 740" stroke-width="2" stroke="#1e40af"/>
+      <path d="M90 20 C 10 80, 10 140, 90 200 C 170 260, 170 320, 90 380 C 10 440, 10 500, 90 560 C 170 620, 170 680, 90 740" stroke-width="2" stroke="#15803d"/>
+      <!-- Base Pair Rungs -->
+      <line x1="65" y1="45" x2="75" y2="45" stroke-width="1.5"/>
+      <line x1="88" y1="75" x2="52" y2="75" stroke-width="1.5"/>
+      <line x1="102" y1="110" x2="38" y2="110" stroke-width="1.5"/>
+      <line x1="88" y1="145" x2="52" y2="145" stroke-width="1.5"/>
+      <line x1="65" y1="175" x2="75" y2="175" stroke-width="1.5"/>
+      <line x1="45" y1="225" x2="95" y2="225" stroke-width="1.5"/>
+      <line x1="22" y1="260" x2="118" y2="260" stroke-width="1.5"/>
+      <line x1="15" y1="290" x2="125" y2="290" stroke-width="1.5"/>
+      <line x1="22" y1="320" x2="118" y2="320" stroke-width="1.5"/>
+      <line x1="45" y1="355" x2="95" y2="355" stroke-width="1.5"/>
+      <line x1="88" y1="435" x2="52" y2="435" stroke-width="1.5"/>
+      <line x1="102" y1="470" x2="38" y2="470" stroke-width="1.5"/>
+      <line x1="88" y1="505" x2="52" y2="505" stroke-width="1.5"/>
+      <line x1="22" y1="620" x2="118" y2="620" stroke-width="1.5"/>
+      <line x1="15" y1="650" x2="125" y2="650" stroke-width="1.5"/>
+      <line x1="22" y1="680" x2="118" y2="680" stroke-width="1.5"/>
+
+      <!-- Biomolecular Condensate (LLPS) Droplets -->
+      <circle cx="165" cy="150" r="22" stroke="#1e40af" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <circle cx="160" cy="146" r="5" stroke="#15803d" stroke-width="1.2"/>
+      <circle cx="173" cy="155" r="3.5" stroke="#1e40af" stroke-width="1.2"/>
+      <circle cx="185" cy="185" r="10" stroke="#15803d" stroke-width="1.2"/>
+
+      <!-- Rod Microbe with Flagella -->
+      <g transform="translate(145, 390) rotate(-25)">
+        <rect x="0" y="0" width="38" height="16" rx="8" stroke="#15803d" stroke-width="1.6"/>
+        <circle cx="10" cy="8" r="2" fill="#15803d"/>
+        <path d="M38 5 Q 52 0, 58 8 T 74 6" stroke="#15803d" stroke-width="1.2"/>
+        <path d="M38 11 Q 50 18, 60 12 T 72 15" stroke="#15803d" stroke-width="1.2"/>
+      </g>
+
+      <!-- Phytochemical Hexagonal Ring -->
+      <g transform="translate(135, 540)">
+        <polygon points="25,0 50,14 50,42 25,56 0,42 0,14" stroke="#1e40af" stroke-width="1.5"/>
+        <polygon points="25,7 43,18 43,38 25,49 7,38 7,18" stroke="#1e40af" stroke-width="1" stroke-dasharray="6 4"/>
+        <line x1="50" y1="14" x2="66" y2="5" stroke="#1e40af" stroke-width="1.5"/>
+        <circle cx="69" cy="3" r="3" stroke="#15803d" stroke-width="1.5"/>
+      </g>
+    </svg>
+
+    <!-- Right Margin: Botanical Plant Shoot, Root System & Rhizosphere Microbes -->
+    <svg class="bg-right-plant-microbe" viewBox="0 0 240 780" xmlns="http://www.w3.org/2000/svg">
+      <!-- Plant Main Stem -->
+      <path d="M130 430 Q 125 280, 140 110" stroke="#15803d" stroke-width="2.2" stroke-linecap="round"/>
+      <!-- Botanical Leaves -->
+      <!-- Leaf 1 (Right) -->
+      <path d="M136 160 C 175 140, 210 165, 205 195 C 180 205, 150 185, 136 160 Z" stroke="#15803d" stroke-width="1.7"/>
+      <path d="M136 160 Q 170 172, 202 193" stroke="#15803d" stroke-width="1.1"/>
+      <!-- Leaf 2 (Left) -->
+      <path d="M133 220 C 90 195, 55 220, 60 255 C 88 265, 118 245, 133 220 Z" stroke="#15803d" stroke-width="1.7"/>
+      <path d="M133 220 Q 95 235, 62 253" stroke="#15803d" stroke-width="1.1"/>
+      <!-- Leaf 3 (Right) -->
+      <path d="M130 290 C 175 270, 215 295, 208 330 C 180 340, 148 318, 130 290 Z" stroke="#15803d" stroke-width="1.7"/>
+      <path d="M130 290 Q 168 305, 205 328" stroke="#15803d" stroke-width="1.1"/>
+      <!-- Leaf 4 (Top Shoot) -->
+      <path d="M140 110 C 125 65, 150 35, 168 55 C 172 80, 155 100, 140 110 Z" stroke="#15803d" stroke-width="1.7"/>
+
+      <!-- Soil Horizon Line (Dashed) -->
+      <path d="M35 430 Q 130 422, 220 435" stroke="#15803d" stroke-width="1.2" stroke-dasharray="5 5"/>
+
+      <!-- Root System (Rhizosphere) -->
+      <path d="M130 430 Q 128 510, 115 600" stroke="#15803d" stroke-width="1.8"/>
+      <path d="M128 465 Q 90 495, 65 545" stroke="#15803d" stroke-width="1.4"/>
+      <path d="M126 500 Q 165 535, 188 585" stroke="#15803d" stroke-width="1.4"/>
+      <path d="M92 505 Q 85 535, 95 565" stroke="#15803d" stroke-width="1"/>
+      <path d="M158 540 Q 150 575, 162 605" stroke="#15803d" stroke-width="1"/>
+
+      <!-- Rhizosphere Microbes & Signaling -->
+      <!-- Bacilli Microbe 1 -->
+      <g transform="translate(45, 580) rotate(20)">
+        <rect x="0" y="0" width="34" height="14" rx="7" stroke="#1e40af" stroke-width="1.5"/>
+        <path d="M34 7 Q 46 2, 54 9 T 68 6" stroke="#1e40af" stroke-width="1.2"/>
+      </g>
+      <!-- Bacilli Microbe 2 -->
+      <g transform="translate(150, 635) rotate(-15)">
+        <rect x="0" y="0" width="32" height="13" rx="6.5" stroke="#15803d" stroke-width="1.5"/>
+        <path d="M0 6.5 Q -12 1, -20 8 T -32 5" stroke="#15803d" stroke-width="1.2"/>
+      </g>
+      <!-- Cocci Cluster & Symbiotic Signaling Dots -->
+      <circle cx="110" cy="645" r="6" stroke="#1e40af" stroke-width="1.4"/>
+      <circle cx="121" cy="650" r="5" stroke="#1e40af" stroke-width="1.4"/>
+      <circle cx="114" cy="658" r="4.5" stroke="#1e40af" stroke-width="1.4"/>
+      <!-- Signal Waves around Roots -->
+      <circle cx="72" cy="485" r="3" fill="#15803d"/>
+      <circle cx="178" cy="505" r="3" fill="#1e40af"/>
+      <circle cx="140" cy="575" r="2.5" fill="#15803d"/>
+    </svg>
+  </div>
 
   <header class="site-header">
     <div class="container nav-wrap">
@@ -82,19 +179,31 @@
       <h2 class="section-heading">Research Interests</h2>
       <div class="interests-grid">
         <div class="interest-card">
-          <h3>Abiotic Stress Sensing &amp; Signaling</h3>
+          <div class="interest-card-head">
+            <svg class="interest-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+            <h3>Abiotic Stress Sensing &amp; Signaling</h3>
+          </div>
           <p>How plants perceive temperature extremes, drought, and salinity and translate signals at the cellular level.</p>
         </div>
         <div class="interest-card">
-          <h3>Biomolecular Condensates (LLPS)</h3>
+          <div class="interest-card-head">
+            <svg class="interest-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="5"/><circle cx="16" cy="15" r="4"/><circle cx="16" cy="7" r="2"/></svg>
+            <h3>Biomolecular Condensates (LLPS)</h3>
+          </div>
           <p>Phase separation of stress-responsive RNA-binding proteins into stress granules during environmental shock.</p>
         </div>
         <div class="interest-card">
-          <h3>Plant-Microbe &amp; Environment</h3>
+          <div class="interest-card-head">
+            <svg class="interest-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="12" height="7" rx="3.5"/><path d="M15 11.5c2 0 3-1.5 5-1.5"/><path d="M15 13c2 0 3 1.5 5 1.5"/><circle cx="7" cy="11.5" r="1"/></svg>
+            <h3>Plant-Microbe &amp; Environment</h3>
+          </div>
           <p>Rhizosphere and phyllosphere interactions that modulate stress tolerance and plant adaptation.</p>
         </div>
         <div class="interest-card">
-          <h3>Crop Breeding &amp; Postharvest Quality</h3>
+          <div class="interest-card-head">
+            <svg class="interest-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 15c6.667-6 13.333 0 20-6"/><path d="M9 22c1.798-1.998 2.518-3.995 2.807-5.993"/><path d="M15 2c-1.798 1.998-2.518 3.995-2.807 5.993"/></svg>
+            <h3>Crop Breeding &amp; Postharvest Quality</h3>
+          </div>
           <p>Multi-generational trait selection, biochemical quality retention, and ambient storage durability.</p>
         </div>
       </div>
