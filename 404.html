@@ -3,38 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page Not Found | Shahriar M. I. Talukder</title>
+  <title>Page Not Found | Shahriar Mannan Imon Talukder</title>
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
   <link rel="stylesheet" href="assets/css/style.css">
-  <style>
-    .not-found-wrap {
-      min-height: 80vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
-    }
-    .not-found-code {
-      font-size: 6rem;
-      font-weight: 800;
-      color: var(--accent-primary);
-      line-height: 1;
-      margin-bottom: 1rem;
-    }
-  </style>
 </head>
 <body>
-  <div class="not-found-wrap">
-    <div class="not-found-code">404</div>
-    <h1 style="margin-bottom: 1rem;">Page Not Found</h1>
-    <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 460px;">
-      The page or resource you are looking for has been moved, removed, or does not exist.
-    </p>
-    <a href="index.html" class="btn btn-primary">
-      <span>Return to Homepage</span>
-    </a>
-  </div>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="site-title">Shahriar Mannan Imon</a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="education.html">Education</a>
+        <a href="projects.html">Projects</a>
+        <a href="publications.html">Publications</a>
+        <a href="experience.html">Experience</a>
+        <a href="contact.html">Contact</a>
+        <a href="mailto:shahriarmannanimon@gmail.com?subject=CV%20Request%20-%20Shahriar%20Mannan%20Imon%20Talukder" class="btn-cv">Request CV</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="text-align: center; padding-top: 5rem;">
+    <h1 style="font-size: 3rem; margin-bottom: 0.5rem;">404</h1>
+    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">The page you are looking for does not exist.</p>
+    <a href="index.html" class="btn-primary">Return Home</a>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>&copy; 2026 Shahriar Mannan Imon Talukder</div>
+    </div>
+  </footer>
 </body>
 </html>
