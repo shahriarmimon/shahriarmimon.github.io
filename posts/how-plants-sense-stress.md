@@ -1,3 +1,15 @@
+---
+title: "How Plants Sense Stress: Biomolecular Condensates as Cellular Switches"
+date: 2026-10-27
+category: Plant Biophysics
+tags:
+  - LLPS
+  - stress granules
+  - abiotic stress
+summary: "Exploring how liquid-liquid phase separation (LLPS) allows plant cells to rapidly sense heat, drought, and salinity and reorganize their internal machinery."
+cover: ""
+draft: false
+---
 Plants cannot move away when temperatures spike, soils dry out, or salinity rises. Instead, they rely on rapid molecular sensing systems that detect subtle shifts in their internal environment and translate those signals into protective cellular action within minutes.
 
 ## Beyond Static Signaling Pathways

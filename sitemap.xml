@@ -2,23 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://shahriarmimon.github.io/</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
   </url>
   <url>
     <loc>https://shahriarmimon.github.io/education.html</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
   </url>
   <url>
     <loc>https://shahriarmimon.github.io/projects.html</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
   </url>
   <url>
     <loc>https://shahriarmimon.github.io/publications.html</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
   </url>
   <url>
     <loc>https://shahriarmimon.github.io/experience.html</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
   </url>
   <url>
     <loc>https://shahriarmimon.github.io/blog.html</loc>
@@ -26,6 +26,10 @@
   </url>
   <url>
     <loc>https://shahriarmimon.github.io/contact.html</loc>
+    <lastmod>2026-10-30</lastmod>
+  </url>
+  <url>
+    <loc>https://shahriarmimon.github.io/blog.html?post=how-plants-sense-stress</loc>
     <lastmod>2026-10-27</lastmod>
   </url>
 </urlset>

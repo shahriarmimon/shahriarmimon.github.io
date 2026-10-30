@@ -1,0 +1,28 @@
+{
+  "categories": [
+    {
+      "name": "Plant Biophysics",
+      "description": "Biomolecular condensates, phase separation, and the physics of plant cells."
+    },
+    {
+      "name": "Plant Stress Biology",
+      "description": "How plants sense and respond to heat, drought, and salinity."
+    },
+    {
+      "name": "Plant-Microbe Interactions",
+      "description": "Rhizosphere and phyllosphere biology."
+    },
+    {
+      "name": "Crop Breeding",
+      "description": "Breeding, phenomics, and postharvest quality."
+    },
+    {
+      "name": "Research Notes",
+      "description": "Paper summaries, methods, and lab notes."
+    },
+    {
+      "name": "Academic Life",
+      "description": "Studying, applications, and experiences."
+    }
+  ]
+}

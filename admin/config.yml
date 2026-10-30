@@ -1,0 +1,120 @@
+# Sveltia CMS configuration for https://shahriarmimon.github.io/admin/
+# Sign in with a fine-grained GitHub token (Contents: Read and write, this repo only).
+
+backend:
+  name: github
+  repo: shahriarmimon/shahriarmimon.github.io
+  branch: main
+  commit_messages:
+    create: "Blog: create {{collection}} \"{{slug}}\""
+    update: "Blog: update {{collection}} \"{{slug}}\""
+    delete: "Blog: delete {{collection}} \"{{slug}}\""
+    uploadMedia: "Blog: upload \"{{path}}\""
+    deleteMedia: "Blog: delete \"{{path}}\""
+
+site_url: https://shahriarmimon.github.io
+display_url: https://shahriarmimon.github.io/blog.html
+logo_url: /assets/images/favicon.svg
+
+media_folder: Images/blog
+public_folder: /Images/blog
+
+collections:
+  # ------------------------------------------------------------------
+  # Blog posts: one Markdown file per post in /posts, with front matter
+  # ------------------------------------------------------------------
+  - name: posts
+    label: Blog Posts
+    label_singular: Post
+    description: Write, edit, categorize, and publish blog posts.
+    folder: posts
+    extension: md
+    format: frontmatter
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    preview_path: "blog.html?post={{slug}}"
+    summary: "{{title}} | {{category}} | {{date}}"
+    sortable_fields: [date, title, category]
+    view_filters:
+      - label: Published
+        field: draft
+        pattern: false
+      - label: Drafts
+        field: draft
+        pattern: true
+    view_groups:
+      - label: Category
+        field: category
+    fields:
+      - label: Title
+        name: title
+        widget: string
+
+      - label: Publish Date
+        name: date
+        widget: datetime
+        format: YYYY-MM-DD
+        date_format: YYYY-MM-DD
+        time_format: false
+
+      - label: Category
+        name: category
+        widget: relation
+        collection: settings
+        file: categories
+        search_fields: ["categories.*.name"]
+        display_fields: ["categories.*.name"]
+        value_field: "categories.*.name"
+        hint: Manage the list under Settings > Blog Categories.
+
+      - label: Tags
+        name: tags
+        widget: list
+        required: false
+        hint: Optional keywords, e.g. LLPS, rice, heat stress.
+
+      - label: Summary
+        name: summary
+        widget: text
+        hint: 1 to 2 sentences shown on the blog list page and in search results.
+
+      - label: Cover Image
+        name: cover
+        widget: image
+        required: false
+
+      - label: Draft
+        name: draft
+        widget: boolean
+        default: false
+        hint: Drafts are saved but hidden from the public blog.
+
+      - label: Body
+        name: body
+        widget: markdown
+
+  # ------------------------------------------------------------------
+  # Settings: editable list of blog categories
+  # ------------------------------------------------------------------
+  - name: settings
+    label: Settings
+    editor:
+      preview: false
+    files:
+      - name: categories
+        label: Blog Categories
+        file: data/categories.json
+        fields:
+          - label: Categories
+            name: categories
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - label: Name
+                name: name
+                widget: string
+              - label: Description
+                name: description
+                widget: string
+                required: false

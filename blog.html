@@ -110,6 +110,7 @@
     <!-- Blog Index View -->
     <div id="blog-list-view">
       <h1 class="page-title">Blog</h1>
+      <div class="category-filter" id="category-filter" role="tablist" aria-label="Filter posts by category"></div>
       <div class="pub-cards" id="posts-container">
         <!-- Populated dynamically from posts/posts.json -->
       </div>
@@ -120,11 +121,15 @@
       <a href="blog.html" class="back-link">&larr; Back to all posts</a>
       <header class="post-header">
         <div class="blog-meta">
-          <span class="blog-tag" id="post-category"></span>
+          <a class="blog-tag" id="post-category" href="blog.html"></a>
           <span id="post-date"></span>
+          <span>&middot;</span>
+          <span id="post-reading-time"></span>
         </div>
         <h1 class="post-title" id="post-title"></h1>
+        <div class="post-tags" id="post-tags"></div>
       </header>
+      <img class="post-cover" id="post-cover" alt="" style="display: none;">
       <div class="markdown-body" id="post-content"></div>
     </article>
   </main>
@@ -158,58 +163,158 @@
     document.addEventListener('DOMContentLoaded', async () => {
       const params = new URLSearchParams(window.location.search);
       const postSlug = params.get('post');
+      const activeCategory = params.get('category');
 
       const listView = document.getElementById('blog-list-view');
       const postView = document.getElementById('blog-post-view');
       const postsContainer = document.getElementById('posts-container');
+      const filterBar = document.getElementById('category-filter');
+
+      const escapeHtml = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[c]));
+      const slugify = (s) => String(s).toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      const formatDate = (iso) => {
+        const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || '');
+        if (!m) return iso || '';
+        return new Date(+m[1], +m[2] - 1, +m[3]).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      };
+      const readTime = (n) => `${n || 1} min read`;
 
       try {
-        const res = await fetch('posts/posts.json');
+        const res = await fetch('posts/posts.json', { cache: 'no-cache' });
         const posts = await res.json();
 
         if (postSlug) {
-          const postMeta = posts.find(p => p.slug === postSlug);
+          // ---------- Single post view ----------
           listView.style.display = 'none';
           postView.style.display = 'block';
 
-          if (postMeta) {
-            document.title = `${postMeta.title} | Shahriar Mannan Imon Talukder`;
-            document.getElementById('post-title').textContent = postMeta.title;
-            document.getElementById('post-date').textContent = postMeta.date;
-            document.getElementById('post-category').textContent = postMeta.category;
+          const postMeta = posts.find(p => p.slug === postSlug);
+          if (!postMeta) throw new Error('Post not found');
+
+          document.title = `${postMeta.title} | Shahriar Mannan Imon Talukder`;
+          const metaDesc = document.querySelector('meta[name="description"]');
+          if (metaDesc && postMeta.summary) metaDesc.setAttribute('content', postMeta.summary);
+
+          document.getElementById('post-title').textContent = postMeta.title;
+          document.getElementById('post-date').textContent = formatDate(postMeta.date);
+          document.getElementById('post-reading-time').textContent = readTime(postMeta.readingTime);
+
+          const catLink = document.getElementById('post-category');
+          catLink.textContent = postMeta.category;
+          catLink.href = `blog.html?category=${encodeURIComponent(slugify(postMeta.category))}`;
+
+          document.getElementById('post-tags').innerHTML = (postMeta.tags || [])
+            .map(t => `<span class="post-tag">#${escapeHtml(t)}</span>`).join('');
+
+          if (postMeta.cover) {
+            const cover = document.getElementById('post-cover');
+            cover.src = postMeta.cover;
+            cover.alt = postMeta.title;
+            cover.style.display = 'block';
           }
 
-          const mdRes = await fetch(`posts/${encodeURIComponent(postSlug)}.md`);
+          const mdRes = await fetch(`posts/${encodeURIComponent(postSlug)}.md`, { cache: 'no-cache' });
           if (!mdRes.ok) throw new Error('Post not found');
           let mdText = await mdRes.text();
 
-          // Strip optional YAML frontmatter if present
-          mdText = mdText.replace(/^---[\s\S]*?---\s*/, '');
+          // Strip YAML front matter
+          mdText = mdText.replace(/^\uFEFF?---\r?\n[\s\S]*?\r?\n---\r?\n?/, '');
 
           document.getElementById('post-content').innerHTML = window.marked
             ? marked.parse(mdText)
-            : `<pre>${mdText}</pre>`;
-        } else {
-          postsContainer.innerHTML = posts.map(post => `
-            <article class="pub-card">
-              <div class="blog-meta">
-                <span class="blog-tag">${post.category}</span>
-                <span>&middot;</span>
-                <span>${post.date}</span>
-              </div>
-              <h2 class="pub-card-title">
-                <a href="blog.html?post=${encodeURIComponent(post.slug)}" style="color: inherit; text-decoration: none;">${post.title}</a>
-              </h2>
-              <p class="blog-summary">${post.summary}</p>
-              <a href="blog.html?post=${encodeURIComponent(post.slug)}" class="pub-link-btn">
-                <span>Read Post</span>
-                <span aria-hidden="true">&rarr;</span>
-              </a>
-            </article>
-          `).join('');
+            : `<pre>${escapeHtml(mdText)}</pre>`;
+          return;
         }
+
+        // ---------- Blog list view ----------
+        let categoryOrder = [];
+        try {
+          const catRes = await fetch('data/categories.json', { cache: 'no-cache' });
+          categoryOrder = ((await catRes.json()).categories || []).map(c => c.name);
+        } catch (e) { /* fall back to categories found in posts */ }
+
+        const usedCategories = [...new Set(posts.map(p => p.category))];
+        const categories = [
+          ...categoryOrder.filter(c => usedCategories.includes(c)),
+          ...usedCategories.filter(c => !categoryOrder.includes(c)),
+        ];
+
+        let current = categories.find(c => slugify(c) === activeCategory) || null;
+
+        const renderFilters = () => {
+          if (categories.length < 2) { filterBar.style.display = 'none'; return; }
+          const chip = (label, slug, isActive, count) =>
+            `<a href="blog.html${slug ? `?category=${slug}` : ''}" data-cat="${slug}" role="tab"
+                aria-selected="${isActive}" class="category-chip${isActive ? ' active' : ''}">
+               ${escapeHtml(label)} <span class="chip-count">${count}</span></a>`;
+          filterBar.innerHTML =
+            chip('All', '', !current, posts.length) +
+            categories.map(c => chip(c, slugify(c), current === c, posts.filter(p => p.category === c).length)).join('');
+        };
+
+        const renderPosts = () => {
+          const list = current ? posts.filter(p => p.category === current) : posts;
+          if (!list.length) {
+            postsContainer.innerHTML = '<p style="color: var(--text-muted);">No posts yet. Check back soon.</p>';
+            return;
+          }
+          postsContainer.innerHTML = list.map(post => {
+            const url = `blog.html?post=${encodeURIComponent(post.slug)}`;
+            return `
+              <article class="pub-card blog-card${post.cover ? ' has-cover' : ''}">
+                ${post.cover ? `<a href="${url}" class="blog-card-cover"><img src="${escapeHtml(post.cover)}" alt="" loading="lazy"></a>` : ''}
+                <div class="blog-card-body">
+                  <div class="blog-meta">
+                    <a class="blog-tag" href="blog.html?category=${slugify(post.category)}" data-cat="${slugify(post.category)}">${escapeHtml(post.category)}</a>
+                    <span>${escapeHtml(formatDate(post.date))}</span>
+                    <span>&middot;</span>
+                    <span>${readTime(post.readingTime)}</span>
+                  </div>
+                  <h2 class="pub-card-title">
+                    <a href="${url}" style="color: inherit; text-decoration: none;">${escapeHtml(post.title)}</a>
+                  </h2>
+                  <p class="blog-summary">${escapeHtml(post.summary)}</p>
+                  <a href="${url}" class="pub-link-btn">
+                    <span>Read Post</span>
+                    <span aria-hidden="true">&rarr;</span>
+                  </a>
+                </div>
+              </article>`;
+          }).join('');
+        };
+
+        // Filter without reloading the page
+        listView.addEventListener('click', (e) => {
+          const link = e.target.closest('[data-cat]');
+          if (!link) return;
+          e.preventDefault();
+          const slug = link.dataset.cat;
+          current = categories.find(c => slugify(c) === slug) || null;
+          history.pushState(null, '', slug ? `blog.html?category=${slug}` : 'blog.html');
+          renderFilters();
+          renderPosts();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        window.addEventListener('popstate', () => {
+          const slug = new URLSearchParams(window.location.search).get('category');
+          current = categories.find(c => slugify(c) === slug) || null;
+          renderFilters();
+          renderPosts();
+        });
+
+        renderFilters();
+        renderPosts();
       } catch (err) {
-        postsContainer.innerHTML = '<p style="color: var(--text-muted);">Unable to load blog posts.</p>';
+        if (postSlug) {
+          document.getElementById('post-title').textContent = 'Post not found';
+          document.getElementById('post-content').innerHTML =
+            '<p>This post does not exist or has not been published yet. <a href="blog.html">See all posts</a>.</p>';
+        } else {
+          postsContainer.innerHTML = '<p style="color: var(--text-muted);">Unable to load blog posts.</p>';
+        }
       }
     });
   </script>
