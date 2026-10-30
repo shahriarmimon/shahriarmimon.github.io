@@ -1,6 +1,6 @@
 /* ==========================================================================
    Shahriar Mannan Imon Talukder | Personal Academic Portfolio
-   Clean, Simple, White-Background Stylesheet
+   Clean, Simple, White-Background Responsive Stylesheet
    ========================================================================== */
 
 :root {
@@ -24,6 +24,8 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -35,6 +37,9 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow-x: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 a {
@@ -50,6 +55,7 @@ a:hover {
 
 img {
   max-width: 100%;
+  height: auto;
   display: block;
 }
 
@@ -66,20 +72,22 @@ img {
 
 .site-header {
   border-bottom: 1px solid var(--border);
-  background: var(--bg);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: 100;
 }
 
 .nav-wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 4rem;
+  min-height: 3.75rem;
   gap: 1rem;
-  flex-wrap: wrap;
-  padding: 0.75rem 0;
+  padding: 0.5rem 1.5rem;
+  position: relative;
 }
 
 .site-title {
@@ -95,19 +103,63 @@ img {
   text-decoration: none;
 }
 
+/* Hamburger menu button (hidden on desktop) */
+.nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text-main);
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-toggle:hover {
+  background: var(--bg-subtle);
+  border-color: #d1d5db;
+}
+
+.nav-toggle svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.nav-toggle .icon-close {
+  display: none;
+}
+
+.nav-toggle.open .icon-menu {
+  display: none;
+}
+
+.nav-toggle.open .icon-close {
+  display: block;
+}
+
 .site-nav {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1.15rem;
   flex-wrap: wrap;
 }
 
 .site-nav a {
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   color: var(--text-muted);
   font-weight: 500;
   text-decoration: none;
-  padding: 0.2rem 0;
+  padding: 0.25rem 0;
   border-bottom: 2px solid transparent;
   transition: color 0.15s ease, border-color 0.15s ease;
 }
@@ -124,7 +176,7 @@ img {
 }
 
 .site-nav a.btn-cv {
-  font-size: 0.85rem;
+  font-size: 0.84rem;
   font-weight: 600;
   color: var(--text-main);
   background: var(--bg-subtle);
@@ -146,7 +198,7 @@ img {
 
 main {
   flex: 1;
-  padding: 3rem 0 4rem;
+  padding: 2.75rem 1.5rem 4rem;
 }
 
 h1, h2, h3 {
@@ -204,6 +256,11 @@ p:last-child {
   flex-shrink: 0;
 }
 
+.profile-info {
+  min-width: 0;
+  flex: 1;
+}
+
 .profile-info h1 {
   font-size: 1.85rem;
   margin-bottom: 0.3rem;
@@ -231,10 +288,15 @@ p:last-child {
   color: var(--text-main);
   background: var(--bg-subtle);
   border: 1px solid var(--border);
-  padding: 0.35rem 0.8rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 999px;
   text-decoration: none;
+  max-width: 100%;
   transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.pill-link span {
+  overflow-wrap: anywhere;
 }
 
 .pill-link:hover {
@@ -252,6 +314,7 @@ p:last-child {
   font-weight: 500;
   color: var(--text-body);
   text-decoration: none;
+  overflow-wrap: anywhere;
 }
 
 .icon-link:hover {
@@ -351,7 +414,6 @@ p:last-child {
   opacity: 0.28;
 }
 
-.site-header,
 main,
 .site-footer {
   position: relative;
@@ -398,7 +460,7 @@ main,
 }
 
 .simple-list li {
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.45rem;
 }
 
 /* ==========================================================================
@@ -411,10 +473,12 @@ main,
 }
 
 .carousel-track {
+  position: relative;
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
   gap: 1.25rem;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE/Edge */
@@ -468,6 +532,7 @@ main,
   align-items: center;
   justify-content: space-between;
   margin-top: 0.85rem;
+  gap: 0.5rem;
 }
 
 .carousel-btn {
@@ -477,10 +542,12 @@ main,
   font-family: var(--font-sans);
   font-size: 0.85rem;
   font-weight: 500;
-  padding: 0.35rem 0.85rem;
+  padding: 0.45rem 0.9rem;
+  min-height: 38px;
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.15s ease, border-color 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .carousel-btn:hover {
@@ -492,23 +559,24 @@ main,
 .carousel-dots {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.6rem;
 }
 
 .carousel-dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   border: none;
   background: #d1d5db;
   cursor: pointer;
   padding: 0;
   transition: background-color 0.15s ease, transform 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .carousel-dot.active {
   background: var(--text-main);
-  transform: scale(1.15);
+  transform: scale(1.2);
 }
 
 /* ==========================================================================
@@ -581,6 +649,7 @@ main,
 
 .org-content {
   flex: 1;
+  min-width: 0;
 }
 
 /* Publications */
@@ -639,7 +708,7 @@ main,
   color: var(--text-main);
   background: var(--bg-subtle);
   border: 1px solid var(--border);
-  padding: 0.35rem 0.8rem;
+  padding: 0.4rem 0.85rem;
   border-radius: 6px;
   text-decoration: none;
   transition: background-color 0.15s ease, border-color 0.15s ease;
@@ -659,7 +728,8 @@ main,
 .blog-meta {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   font-size: 0.82rem;
   color: var(--text-muted);
   margin-bottom: 0.4rem;
@@ -690,7 +760,8 @@ main,
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--text-muted);
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.5rem;
+  padding: 0.25rem 0;
   text-decoration: none;
 }
 
@@ -831,9 +902,10 @@ main,
   font-weight: 600;
   color: #ffffff;
   background: var(--text-main);
-  padding: 0.55rem 1.1rem;
+  padding: 0.6rem 1.15rem;
   border-radius: 6px;
   text-decoration: none;
+  text-align: center;
   transition: background-color 0.15s ease;
 }
 
@@ -869,82 +941,167 @@ main,
 }
 
 /* ==========================================================================
-   Responsive Adjustments (Tablet & Mobile)
+   Responsive Adjustments (Laptops, Tablets & Phones)
    ========================================================================== */
 
-@media (max-width: 1100px) {
+@media (max-width: 1150px) {
   .science-bg .bg-left-dna {
-    left: -20px;
-    width: 165px;
-    opacity: 0.16;
+    left: -15px;
+    width: 140px;
+    opacity: 0.14;
   }
 
   .science-bg .bg-right-plant-microbe {
-    right: -20px;
-    width: 175px;
-    opacity: 0.16;
+    right: -15px;
+    width: 150px;
+    opacity: 0.14;
   }
 }
 
+/* Tablet & Mobile Navigation Breakpoint */
+@media (max-width: 768px) {
+  .nav-wrap {
+    min-height: 3.5rem;
+    padding: 0.5rem 1.15rem;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0.5rem 1.15rem 1rem;
+    z-index: 99;
+  }
+
+  .site-nav.open {
+    display: flex;
+  }
+
+  .site-nav a {
+    font-size: 0.95rem;
+    padding: 0.65rem 0.25rem;
+    border-bottom: 1px solid #f3f4f6;
+    display: flex;
+    align-items: center;
+  }
+
+  .site-nav a.active {
+    color: var(--accent);
+    border-bottom-color: #f3f4f6;
+    font-weight: 600;
+  }
+
+  .site-nav a.btn-cv {
+    margin-top: 0.65rem;
+    justify-content: center;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    border: 1px solid var(--border);
+  }
+
+  .science-bg .bg-left-dna {
+    left: -30px;
+    width: 90px;
+    opacity: 0.09;
+  }
+
+  .science-bg .bg-right-plant-microbe {
+    right: -30px;
+    width: 95px;
+    opacity: 0.09;
+  }
+}
+
+/* Phone Breakpoint */
 @media (max-width: 640px) {
   .container {
     padding: 0 1.15rem;
   }
 
   main {
-    padding: 2rem 0 3rem;
-  }
-
-  .nav-wrap {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.6rem;
-    padding: 0.75rem 0;
-  }
-
-  .site-nav {
-    width: 100%;
-    gap: 0.5rem 0.9rem;
-    justify-content: flex-start;
-  }
-
-  .site-nav a {
-    font-size: 0.88rem;
-  }
-
-  .site-nav a.btn-cv {
-    padding: 0.28rem 0.65rem;
-    font-size: 0.82rem;
+    padding: 1.75rem 1.15rem 3rem;
   }
 
   .profile-header {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 1.15rem;
+    align-items: center;
+    text-align: center;
+    gap: 1.1rem;
     margin-bottom: 2rem;
     padding-bottom: 1.75rem;
   }
 
   .profile-photo {
-    width: 120px;
-    height: 120px;
+    width: 128px;
+    height: 128px;
+    border-radius: 14px;
   }
 
   .profile-info h1 {
-    font-size: 1.5rem;
+    font-size: 1.45rem;
+    line-height: 1.25;
   }
 
   .profile-tagline {
     font-size: 0.9rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .profile-links {
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .pill-link {
+    font-size: 0.82rem;
+    padding: 0.4rem 0.75rem;
+  }
+
+  .vision-box {
+    padding: 1rem 1.1rem;
   }
 
   .interests-grid {
     grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .interest-card {
+    padding: 1rem 1.1rem;
   }
 
   .page-title {
-    font-size: 1.55rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    margin-bottom: 1.35rem;
+    padding-bottom: 0.6rem;
+  }
+
+  .post-title {
+    font-size: 1.45rem;
+  }
+
+  .section-block {
+    margin-top: 2.25rem;
+  }
+
+  .section-heading {
+    font-size: 1.15rem;
+  }
+
+  .item-card {
+    padding: 1.15rem 0;
   }
 
   .item-header {
@@ -953,30 +1110,86 @@ main,
     gap: 0.15rem;
   }
 
-  .org-row {
-    gap: 0.85rem;
-  }
-
-  .org-logo {
-    width: 42px;
-    height: 42px;
-  }
-
-  .pub-card {
-    padding: 1.15rem;
-  }
-
-  .pub-card-title {
+  .item-title {
     font-size: 1.02rem;
   }
 
+  .item-meta {
+    font-size: 0.83rem;
+    white-space: normal;
+  }
+
+  .org-row {
+    gap: 0.75rem;
+  }
+
+  .org-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .simple-list {
+    padding-left: 1.05rem;
+  }
+
+  .pub-card {
+    padding: 1.1rem 1.15rem;
+  }
+
+  .pub-card-title {
+    font-size: 1rem;
+  }
+
+  .pub-card-authors {
+    font-size: 0.88rem;
+  }
+
   .carousel-caption {
-    padding: 1rem;
+    padding: 0.95rem 1.05rem;
+  }
+
+  .carousel-caption h3 {
+    font-size: 0.98rem;
+  }
+
+  .carousel-caption p {
+    font-size: 0.88rem;
+  }
+
+  .carousel-btn {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.82rem;
+  }
+
+  .cv-box {
+    padding: 1.2rem;
+  }
+
+  .btn-primary {
+    width: 100%;
   }
 
   .footer-inner {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
     gap: 0.85rem;
+  }
+
+  .footer-links {
+    justify-content: center;
+    gap: 0.85rem 1.1rem;
+  }
+}
+
+/* Extra-Small Phone Breakpoint (e.g., 320px - 380px) */
+@media (max-width: 390px) {
+  .profile-info h1 {
+    font-size: 1.32rem;
+  }
+
+  .pill-link {
+    font-size: 0.78rem;
+    padding: 0.36rem 0.65rem;
   }
 }

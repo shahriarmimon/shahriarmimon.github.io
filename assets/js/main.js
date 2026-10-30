@@ -1,7 +1,56 @@
 /**
- * Awards & Honors Auto-Moving Carousel with Touch & Hover Pause
+ * Mobile Navigation Toggle & Awards Auto-Moving Carousel
  */
 document.addEventListener('DOMContentLoaded', () => {
+  // 1. Mobile Navigation Hamburger Toggle
+  const navToggle = document.querySelector('.nav-toggle');
+  const siteNav = document.querySelector('.site-nav');
+
+  if (navToggle && siteNav) {
+    navToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = siteNav.classList.toggle('open');
+      navToggle.classList.toggle('open', isOpen);
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    // Close menu when clicking a link
+    siteNav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        siteNav.classList.remove('open');
+        navToggle.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Close menu when tapping outside header
+    document.addEventListener('click', (e) => {
+      if (siteNav.classList.contains('open') && !siteNav.contains(e.target) && !navToggle.contains(e.target)) {
+        siteNav.classList.remove('open');
+        navToggle.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Close menu on Escape key or resize to desktop
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && siteNav.classList.contains('open')) {
+        siteNav.classList.remove('open');
+        navToggle.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768 && siteNav.classList.contains('open')) {
+        siteNav.classList.remove('open');
+        navToggle.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // 2. Awards & Honors Auto-Moving Carousel (Home Page)
   const track = document.getElementById('awards-track');
   const prevBtn = document.getElementById('carousel-prev');
   const nextBtn = document.getElementById('carousel-next');
