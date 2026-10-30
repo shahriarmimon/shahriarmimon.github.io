@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 768 && siteNav.classList.contains('open')) {
+      if (window.innerWidth > 820 && siteNav.classList.contains('open')) {
         siteNav.classList.remove('open');
         navToggle.classList.remove('open');
         navToggle.setAttribute('aria-expanded', 'false');
