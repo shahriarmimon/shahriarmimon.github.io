@@ -20,10 +20,8 @@ const SITE_URL = 'https://shahriarmimon.github.io';
 
 const STATIC_PAGES = [
   { path: '/', changefreq: 'weekly', priority: '1.0' },
-  { path: '/education.html', changefreq: 'monthly', priority: '0.8' },
-  { path: '/projects.html', changefreq: 'monthly', priority: '0.9' },
-  { path: '/publications.html', changefreq: 'monthly', priority: '0.9' },
-  { path: '/experience.html', changefreq: 'monthly', priority: '0.8' },
+  { path: '/about.html', changefreq: 'monthly', priority: '0.9' },
+  { path: '/research.html', changefreq: 'monthly', priority: '0.9' },
   { path: '/blog.html', changefreq: 'weekly', priority: '0.8' },
   { path: '/contact.html', changefreq: 'monthly', priority: '0.7' },
 ];
